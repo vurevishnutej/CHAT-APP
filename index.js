@@ -6,6 +6,7 @@ const socketio=require('socket.io')
 const {GenerateMessage}=require('./utils/messages.js')
 const {GenerateLocationMessage}=require('./utils/messages.js')
 const {addUser,getUser,getUsersInRoom,removeUser}=require('./utils/users')
+const PORT = process.env.PORT || 8080 
 
 const app=express()
 const server=http.createServer(app)
@@ -72,9 +73,9 @@ socket.on('SendLocation',(coords,callback)=>{
 })
 })
 
-const publicDirectoryPath=path.join(__dirname,'../public')
+const publicDirectoryPath=path.join(__dirname,'./public')
 app.use(express.static(publicDirectoryPath))
 
-server.listen(3000,()=>{
-    console.log('server is up on port${3000}')
+server.listen(PORT,()=>{
+    console.log(`server is up on port${PORT}`)
 })
